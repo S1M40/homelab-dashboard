@@ -1,0 +1,30 @@
+services:
+  homelab-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: homelab-dashboard:latest
+    container_name: homelab-dashboard
+    restart: unless-stopped
+
+    ports:
+      # Change the left port to expose on a different host port.
+      # e.g. "80:80" or "8080:80"
+      - "8080:80"
+
+    volumes:
+      # Mount the config directory so you can edit services.json
+      # without rebuilding the Docker image.
+      # Just edit config/services.json and refresh your browser.
+      - ./config:/usr/share/nginx/html/config:ro
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+    labels:
+      - "com.homelab.service=dashboard"
+      - "com.homelab.description=Homelab Infrastructure Dashboard"
