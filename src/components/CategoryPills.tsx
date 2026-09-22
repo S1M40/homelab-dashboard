@@ -34,8 +34,9 @@ export function CategoryPills({
         alignItems: 'center',
         gap: 6,
         overflowX: 'auto',
-        padding: '2px 0 10px',
+        padding: '4px 0 8px',
         scrollbarWidth: 'none',
+        flexShrink: 0,
       }}
     >
       {tabs.map(tab => {

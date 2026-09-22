@@ -196,12 +196,13 @@ export function App() {
       {/* Main Body */}
       <main
         style={{
-          flex: 1,
+          flex: '1 1 0',
+          minHeight: 0,
           overflowY: 'auto',
-          padding: '16px 24px 32px',
+          padding: '20px 24px 32px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 16,
+          gap: 20,
         }}
       >
         {error && <ErrorBanner error={error} />}
